@@ -1,32 +1,20 @@
 name: Test
 on: [push, pull_request]
 jobs:
-  test-15:
-    name: Test with Go 1.15
+  test:
+    name: Test
     runs-on: ubuntu-latest
+    strategy:
+      fail_fast: false
+      matrix:
+        go: ['1.11', '1.12', '1.13', '1.14', '1.15']
     steps:
-      - name: Set up Go 1.15
-        uses: actions/setup-go@v1
+      - uses: actions/setup-go@v1
         with:
-          go-version: 1.15
+          go-version: ${{ matrix.go }}
       
       - name: Check out source code
         uses: actions/checkout@v1
       
-      - name: Test
-        run: go test -v
-  
-  test-14:
-    name: Test with Go 1.14
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up Go 1.14
-        uses: actions/setup-go@v1
-        with:
-          go-version: 1.14
-      
-      - name: Check out source code
-        uses: actions/checkout@v1
-      
-      - name: Test
+      - name: Run the test suite
         run: go test -v
