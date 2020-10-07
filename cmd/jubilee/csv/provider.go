@@ -34,6 +34,11 @@ func (p *Provider) Fetch() ([]jubilee.BirthdayRecord, error) {
 
 		line := strings.TrimSpace(string(input))
 
+		// Disregard empty lines or comments
+		if "" == line || '#' == line[0] {
+			continue
+		}
+
 		record, err := recordFromLine(line)
 		if err != nil {
 			return records, fmt.Errorf("corrupted file: %v", err)
