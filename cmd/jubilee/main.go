@@ -12,10 +12,6 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-type RecordProvider interface {
-	Fetch() ([]jubilee.BirthdayRecord, error)
-}
-
 func main() {
 	app := &cli.App{
 		Name:  "jubilee",
