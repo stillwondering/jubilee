@@ -92,8 +92,7 @@ func makeEntrypoint() cli.ActionFunc {
 		filtered := processor.Process(records)
 
 		for _, record := range filtered {
-			ageToBe := c.Int("year") - record.DateOfBirth.Year()
-			fmt.Printf("%s will be %d on %s\n", record.Name, ageToBe, record.DateOfBirth.Format(jubilee.DateFormat))
+			fmt.Printf("%s,%s\n", record.Name, record.DateOfBirth.Format(jubilee.DateFormat))
 		}
 
 		return nil
