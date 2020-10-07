@@ -53,7 +53,7 @@ func (p *Provider) Fetch() ([]jubilee.BirthdayRecord, error) {
 func recordFromLine(line string) (jubilee.BirthdayRecord, error) {
 	fields := strings.Split(line, csvSeparator)
 
-	if len(fields) != 2 {
+	if len(fields) < 2 {
 		return jubilee.BirthdayRecord{}, fmt.Errorf("invalid line '%s'", line)
 	}
 
